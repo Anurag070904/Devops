@@ -1,0 +1,30 @@
+******************************************************to crete cluster and worker node *********************************************************************
+1)Amazon EKS --- Creare eks cluster ----custom configuratron ------disable eks auto mode ------Name cluster ----------cluster iam role (policy )  create new role amazon eks policy is automatically selected -------------Kubernetes version (1.37) ----------Standard Support ------control plane scaling tier keep it as it is don't select it --------------Control plane conf (master node )            event time to live , service node port range , controller manager , horizontal pod autoscaler configuration  , Scheduler   scoring strategy  least/most allocate resources weight ----------auto mode conf ------cluster acess  (allow admi access)------------envelope encryption -----------arc zonal shift disable ---------delection protection enable 
+
+2)networking ----additional security group not necessary to add -----------cluster endpoint access (public and private ) -----control plane egress   (aws manged)
+3)configure observation ---------
+4)select add ons  ----------some packages already selected
+conf selected data and add ons
+
+after creation of ofcluster and worker node then and then only we can create worker node
+cluster has high costing in aws alternative to use cluster is killcoda software to practice 
+
+***********************************************************to create worker node *****************************************************************************
+
+1)create ---add node group ---name node ---assign iam node (4 policies and required ---eks cni , eks worker , elastic container regi, ec2 conaatiner registry  read only ) ---next 
+2)set compute and scaling confg ----use amazon Linux image --capacity typr on demand ----instance type t3.small ---- node group scaling conf ----node group update conf   max kiti worker node band rahile tri aapela kai pharak ny padnar ---------next 
+3) networking 
+4)reviw and create 
+now we created complete cluster  ..................in cluster security group enble port number all tcp   
+
+****************************to access cluster  .......go to cloudshell 
+1)aws eks update-kubeconfig --region ap-south-2 --name clustername(eg. b78-cluster)
+2)kubectl get nodes       //to look worker nodes
+3)kubectl get nodes -o wide     //to see full details of nodes   you can see nodes ip here 
+4)kubectl get pods 
+5)kubectl run pod1 --image=nginx  
+6)kubectl get pods
+7)kubectl get pods -o wide 
+8)kubecl expose pod new-pod --type=NodePort --port=80 --target-port=80
+9)kubectl get svc
+ata pulic ip node vr tak ani port number pn tak welcome to ndnix yeil
